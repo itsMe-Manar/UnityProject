@@ -10,6 +10,7 @@ public class PlayerMovement : MonoBehaviour
     public Rigidbody2D rb;
     public bool isJumping;
     private Animator animator;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -44,4 +45,6 @@ public class PlayerMovement : MonoBehaviour
             isJumping = true;
         }
     }
+   
 }
+
