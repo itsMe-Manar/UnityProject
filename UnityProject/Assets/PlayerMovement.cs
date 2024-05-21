@@ -9,10 +9,12 @@ public class PlayerMovement : MonoBehaviour
     private float Move;
     public Rigidbody2D rb;
     public bool isJumping;
+    private Animator animator;
     // Start is called before the first frame update
     void Start()
     {
-        
+        rb = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -24,6 +26,10 @@ public class PlayerMovement : MonoBehaviour
         {
             rb.AddForce(new Vector2(rb.velocity.x, jump));
         }
+        if (Move > 0)
+            transform.localScale = new Vector3(1, 1, 1);
+        else if (Move < 0)
+            transform.localScale = new Vector3(-1, 1, 1);
     }
 
     private void OnCollisionEnter2D(Collision2D other)
