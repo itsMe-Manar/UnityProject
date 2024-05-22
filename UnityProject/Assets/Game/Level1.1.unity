@@ -295,9 +295,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
-  jump: 500
+  jumpForce: 7
   rb: {fileID: 7392725}
-  isJumping: 0
+  maxJumps: 2
 --- !u!1 &78486942
 GameObject:
   m_ObjectHideFlags: 0
