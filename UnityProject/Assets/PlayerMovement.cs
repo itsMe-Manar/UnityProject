@@ -5,46 +5,69 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     public float speed;
-    public float jump;
-    private float Move;
+    public float jumpForce;
+    private float moveInput;
     public Rigidbody2D rb;
-    public bool isJumping;
-    private Animator animator;
+    private int jumpCount;
+    public int maxJumps = 2; // Maximum number of jumps (including the initial jump)
+    private bool isGrounded;
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        animator = GetComponent<Animator>();
+        jumpCount = maxJumps;
     }
 
     // Update is called once per frame
     void Update()
     {
-        Move = Input.GetAxis("Horizontal");
-        rb.velocity = new Vector2(speed * Move, rb.velocity.y);
-        if (Input.GetButtonDown("Jump") && isJumping == false)
+        moveInput = Input.GetAxis("Horizontal");
+        rb.velocity = new Vector2(speed * moveInput, rb.velocity.y);
+
+        // Debug log for move input
+        Debug.Log("Move Input: " + moveInput);
+
+        if (Input.GetButtonDown("Jump") && jumpCount > 0)
         {
-            rb.AddForce(new Vector2(rb.velocity.x, jump));
+            // Debug log for jump
+            Debug.Log("Jump pressed");
+
+            rb.velocity = new Vector2(rb.velocity.x, 0); // Reset y velocity before jumping
+            rb.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
+            jumpCount--;
+
+            // Debug log for jump count
+            Debug.Log("Jump Count: " + jumpCount);
         }
-        if (Move > 0)
+
+        // Flip sprite based on movement direction
+        if (moveInput > 0)
             transform.localScale = new Vector3(1, 1, 1);
-        else if (Move < 0)
+        else if (moveInput < 0)
             transform.localScale = new Vector3(-1, 1, 1);
     }
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.CompareTag("Floor")){
-            isJumping = false;
+        if (other.gameObject.CompareTag("Floor"))
+        {
+            isGrounded = true;
+            jumpCount = maxJumps; // Reset jump count when the player hits the ground
+
+            // Debug log for ground collision
+            Debug.Log("Landed on Floor");
         }
     }
+
     private void OnCollisionExit2D(Collision2D other)
     {
-        if (other.gameObject.CompareTag("Floor")){
-            isJumping = true;
+        if (other.gameObject.CompareTag("Floor"))
+        {
+            isGrounded = false;
+
+            // Debug log for leaving ground
+            Debug.Log("Left Floor");
         }
     }
-   
 }
-
