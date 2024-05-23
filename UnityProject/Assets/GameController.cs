@@ -6,10 +6,13 @@ public class GameController : MonoBehaviour
 {
     Vector2 startPos;
     SpriteRenderer spriteRenderer;
+    AudioManager audioManager;
 
     private void Awake()
     {
-        spriteRenderer = GetComponent<SpriteRenderer>();    
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+
     }
     // Start is called before the first frame update
     void Start()
@@ -22,6 +25,7 @@ public class GameController : MonoBehaviour
     {
         if (collision.CompareTag("Obstacle"))
         {
+            audioManager.PlaySFX(audioManager.death);
             Die();
         }
     }

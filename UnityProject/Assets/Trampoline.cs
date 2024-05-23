@@ -4,6 +4,12 @@ public class Trampoline : MonoBehaviour
 {
     // Adjust this value to change the strength of the jump
     public float jumpForce = 10f;
+    AudioManager audioManager;
+
+    private void Awake()
+    {
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+    }
 
     // Make sure this method is called only when player enters the trigger area
     private void OnTriggerEnter2D(Collider2D collision)
@@ -11,6 +17,8 @@ public class Trampoline : MonoBehaviour
         // Check if the object entering the trigger is the player
         if (collision.gameObject.CompareTag("Player"))
         {
+
+            audioManager.PlaySFX(audioManager.trampoline);
             // Get the Rigidbody2D component of the player
             Rigidbody2D playerRb = collision.gameObject.GetComponent<Rigidbody2D>();
 
