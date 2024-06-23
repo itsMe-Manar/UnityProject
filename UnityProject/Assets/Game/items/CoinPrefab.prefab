@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4032792825310732401}
   m_Layer: 0
   m_Name: coin (1)
-  m_TagString: Untagged
+  m_TagString: Coin
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -132,7 +132,7 @@ GameObject:
   - component: {fileID: 7832028131926622963}
   m_Layer: 0
   m_Name: coin (2)
-  m_TagString: Untagged
+  m_TagString: Coin
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -216,7 +216,7 @@ GameObject:
   - component: {fileID: 5871867528017698774}
   m_Layer: 0
   m_Name: coin (4)
-  m_TagString: Untagged
+  m_TagString: Coin
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -300,7 +300,7 @@ GameObject:
   - component: {fileID: 2838109366084738825}
   m_Layer: 0
   m_Name: coin (3)
-  m_TagString: Untagged
+  m_TagString: Coin
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -384,7 +384,7 @@ GameObject:
   - component: {fileID: 5768714632198033776}
   m_Layer: 0
   m_Name: coin
-  m_TagString: Untagged
+  m_TagString: Coin
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
