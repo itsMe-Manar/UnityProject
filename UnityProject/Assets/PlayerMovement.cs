@@ -6,7 +6,7 @@ public class PlayerController : MonoBehaviour
     public float jumpForce = 10f;
     public int maxJumps = 2; // Maximum number of jumps (including the initial jump)
     public Animator animator;
-
+    float horizontalInput;
     private Vector2 startPosition; // Starting position
     private Rigidbody2D rb;
     private Vector2 movement; // Define movement vector here
@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();    
         startPosition = rb.position; // Set the initial position
         Debug.Log("Player Start Position: " + startPosition);
 
@@ -26,22 +27,14 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         // Capture player horizontal movement input
-        float horizontalInput = Input.GetAxisRaw("Horizontal");
+        horizontalInput = Input.GetAxisRaw("Horizontal");
         movement = new Vector2(horizontalInput * moveSpeed, rb.velocity.y);
 
         // Update animator parameters based on movement
-        animator.SetFloat("Horizontal", Mathf.Abs(horizontalInput));
-        animator.SetFloat("Speed", Mathf.Abs(horizontalInput));
+      
 
         // Check if the player is not moving and stop animation
-        if (isGrounded)
-        {
-            animator.SetBool("IsMoving", Mathf.Abs(horizontalInput) > 0);
-        }
-        else
-        {
-            animator.SetBool("IsMoving", false);
-        }
+        
 
         // Flip the character to face the direction of movement
         if (horizontalInput > 0 && !facingRight)
@@ -60,6 +53,7 @@ public class PlayerController : MonoBehaviour
             {
                 rb.velocity = new Vector2(rb.velocity.x, jumpForce);
                 jumpsRemaining--;
+                animator.SetBool("isJumping", !isGrounded);
 
                 // Play jump animation or set animator parameters
             }
@@ -68,8 +62,11 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
+       
         // Move the player based on input
         rb.velocity = new Vector2(movement.x, rb.velocity.y);
+        animator.SetFloat("xVelocity", Mathf.Abs(rb.velocity.x));
+        animator.SetFloat("yVelocity", Mathf.Abs(rb.velocity.y));
     }
 
     private void OnTriggerEnter2D(Collider2D other)
