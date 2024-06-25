@@ -1736,9 +1736,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 5
-  jumpForce: 5
+  jumpForce: 6
   maxJumps: 2
-  animator: {fileID: 748944578}
+  animator: {fileID: 0}
 --- !u!50 &748944582
 Rigidbody2D:
   serializedVersion: 4
