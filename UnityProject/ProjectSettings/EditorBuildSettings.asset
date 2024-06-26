@@ -6,6 +6,15 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Game/Scenes/SampleScene.unity
-    guid: 8c9cfa26abfee488c85f1582747f6a02
+    path: Assets/Game/Scenes/Menu.unity
+    guid: 69e5c66fdd1b7d04fbd4eeee0227c30d
+  - enabled: 1
+    path: Assets/Game/map/map.unity
+    guid: 18caa29cbb794da48b75a18d6000e3d3
+  - enabled: 1
+    path: Assets/Game/Scenes/LucaNewScene.unity
+    guid: 93fc447fc2993144eb152fa171ba995c
+  - enabled: 1
+    path: Assets/Game/Scenes/Klausurphase.unity
+    guid: 296f357ca49b0af4584df38a20a336f0
   m_configObjects: {}
