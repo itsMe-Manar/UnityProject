@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -10,7 +11,7 @@ public class PlayerController : MonoBehaviour
     private Vector2 startPosition; // Starting position
     private Rigidbody2D rb;
     private Vector2 movement; // Define movement vector here
-    private bool isGrounded; // To check if the player is grounded
+    private bool isGrounded = false; // To check if the player is grounded
     private bool facingRight = true; // To track which direction the player is facing
     private int jumpsRemaining; // Number of jumps remaining
 
@@ -53,6 +54,7 @@ public class PlayerController : MonoBehaviour
             {
                 rb.velocity = new Vector2(rb.velocity.x, jumpForce);
                 jumpsRemaining--;
+                isGrounded = false;
                 animator.SetBool("isJumping", !isGrounded);
 
                 // Play jump animation or set animator parameters
@@ -65,12 +67,15 @@ public class PlayerController : MonoBehaviour
 
         // Move the player based on input
         rb.velocity = new Vector2(movement.x, rb.velocity.y);
-        animator.SetFloat("xVelocity", Mathf.Abs(rb.velocity.x));
-        animator.SetFloat("yVelocity", Mathf.Abs(rb.velocity.y));
+        animator.SetFloat("xVelocity", Math.Abs(rb.velocity.x));
+        animator.SetFloat("yVelocity", Math.Abs(rb.velocity.y));
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+
+        isGrounded = true;
+        animator.SetBool("isJumping", !isGrounded);
         if (other.gameObject.CompareTag("Coin"))
         {
             // Destroy the coin and possibly update the score
@@ -89,7 +94,7 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Floor"))
         {
-            isGrounded = true; // Player is grounded when colliding with the floor
+             // Player is grounded when colliding with the floor
             jumpsRemaining = maxJumps; // Reset jumps remaining on ground contact
         }
     }
