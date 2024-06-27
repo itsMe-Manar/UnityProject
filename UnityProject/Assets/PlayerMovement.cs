@@ -1,114 +1,189 @@
 using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
     public float moveSpeed = 5f;
     public float jumpForce = 10f;
-    public int maxJumps = 2; // Maximum number of jumps (including the initial jump)
+    public int maxJumps = 2;
     public Animator animator;
-    float horizontalInput;
-    private Vector2 startPosition; // Starting position
-    private Rigidbody2D rb;
-    private Vector2 movement; // Define movement vector here
-    private bool isGrounded = false; // To check if the player is grounded
-    private bool facingRight = true; // To track which direction the player is facing
-    private int jumpsRemaining; // Number of jumps remaining
+    public string[] scenes;
+    public int requiredCoins = 10;
 
+    public GameObject congratulationPanel;
+    public GameObject tryAgainPanel;
+
+    private Rigidbody2D rb;
+    private Vector2 startPosition;
+    private Vector2 movement;
+    private bool isGrounded = false;
+    private bool facingRight = true;
+    private int jumpsRemaining;
+    private int currentSceneIndex;
+    AudioManager audioManager;
+
+  
+       void Awake() { 
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>(); }
+      
     void Start()
     {
+
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
-        startPosition = rb.position; // Set the initial position
-        Debug.Log("Player Start Position: " + startPosition);
+        startPosition = rb.position;
+        jumpsRemaining = maxJumps;
+        currentSceneIndex = Array.IndexOf(scenes, SceneManager.GetActiveScene().name);
 
-        jumpsRemaining = maxJumps; // Initialize jumps remaining
+        
+        // Debug the current scene index and scenes array
+        Debug.Log("Current Scene: " + SceneManager.GetActiveScene().name);
+        Debug.Log("Current Scene Index: " + currentSceneIndex);
+        for (int i = 0; i < scenes.Length; i++)
+        {
+            Debug.Log("Scene " + i + ": " + scenes[i]);
+        }
+
+        congratulationPanel.SetActive(false);
+        tryAgainPanel.SetActive(false);
     }
 
     void Update()
     {
-        // Capture player horizontal movement input
-        horizontalInput = Input.GetAxisRaw("Horizontal");
-        movement = new Vector2(horizontalInput * moveSpeed, rb.velocity.y);
-
-        // Update animator parameters based on movement
-
-
-        // Check if the player is not moving and stop animation
-
-
-        // Flip the character to face the direction of movement
-        if (horizontalInput > 0 && !facingRight)
+        if (Time.timeScale > 0)
         {
-            Flip();
-        }
-        else if (horizontalInput < 0 && facingRight)
-        {
-            Flip();
-        }
-
-        // Handle jumping
-        if (Input.GetButtonDown("Jump"))
-        {
-            if (isGrounded || jumpsRemaining > 0)
-            {
-                rb.velocity = new Vector2(rb.velocity.x, jumpForce);
-                jumpsRemaining--;
-                isGrounded = false;
-                animator.SetBool("isJumping", !isGrounded);
-
-                // Play jump animation or set animator parameters
-            }
+            HandleInput();
+            HandleJump();
+            FlipCharacter();
         }
     }
 
     void FixedUpdate()
     {
+        if (Time.timeScale > 0)
+        {
+            MovePlayer();
+            UpdateAnimatorParameters();
+        }
+    }
 
-        // Move the player based on input
+    private void HandleInput()
+    {
+        float horizontalInput = Input.GetAxisRaw("Horizontal");
+        movement = new Vector2(horizontalInput * moveSpeed, rb.velocity.y);
+    }
+
+    private void HandleJump()
+    {
+        if (Input.GetButtonDown("Jump") && (isGrounded || jumpsRemaining > 0))
+        {
+            rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+            jumpsRemaining--;
+            isGrounded = false;
+            animator.SetBool("isJumping", true);
+        }
+    }
+
+    private void MovePlayer()
+    {
         rb.velocity = new Vector2(movement.x, rb.velocity.y);
+    }
+
+    private void FlipCharacter()
+    {
+        if ((movement.x > 0 && !facingRight) || (movement.x < 0 && facingRight))
+        {
+            facingRight = !facingRight;
+            Vector3 theScale = transform.localScale;
+            theScale.x *= -1;
+            transform.localScale = theScale;
+        }
+    }
+
+    private void UpdateAnimatorParameters()
+    {
         animator.SetFloat("xVelocity", Math.Abs(rb.velocity.x));
         animator.SetFloat("yVelocity", Math.Abs(rb.velocity.y));
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-
-        isGrounded = true;
-        animator.SetBool("isJumping", !isGrounded);
-        if (other.gameObject.CompareTag("Coin"))
+        if (other.CompareTag("Floor"))
         {
-            // Destroy the coin and possibly update the score
-            Destroy(other.gameObject);
+            isGrounded = true;
+            jumpsRemaining = maxJumps;
+            animator.SetBool("isJumping", false);
         }
-        else if (other.gameObject.CompareTag("Spike"))
+        else if (other.CompareTag("Coin"))
         {
-            // Reset player position to the start position
-            rb.position = startPosition;
-            transform.position = startPosition;
-            jumpsRemaining = maxJumps; // Reset jumps remaining
+            Destroy(other.gameObject);
+            CoinCounter.instance.IncreaseCoins(1);
+        }
+        else if (other.CompareTag("Spike"))
+        {
+           
+            ResetPlayerPosition(); 
+            audioManager.PlaySFX(audioManager.death);
+        }
+        else if (other.CompareTag("Door"))
+        {
+            if (CoinCounter.instance.currentCoins >= requiredCoins)
+            {
+                
+                ShowPanel(congratulationPanel);
+                audioManager.PlaySFX(audioManager.energie);
+            }
+            else
+            {
+               
+                ShowPanel(tryAgainPanel);
+                audioManager.PlaySFX(audioManager.death);
+            }
         }
     }
 
-    void OnCollisionEnter2D(Collision2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Floor"))
         {
-             // Player is grounded when colliding with the floor
-            jumpsRemaining = maxJumps; // Reset jumps remaining on ground contact
+            isGrounded = true;
+            jumpsRemaining = maxJumps;
         }
     }
 
-    
-
-    private void Flip()
+    private void ResetPlayerPosition()
     {
-        // Switch the way the player is labelled as facing
-        facingRight = !facingRight;
+        rb.position = startPosition;
+        transform.position = startPosition;
+        jumpsRemaining = maxJumps;
+    }
 
-        // Multiply the player's x local scale by -1 to flip the sprite
-        Vector3 theScale = transform.localScale;
-        theScale.x *= -1;
-        transform.localScale = theScale;
+   
+   
+    private void ShowPanel(GameObject panel)
+    {
+        panel.SetActive(true);
+        // Remove all previous listeners to avoid duplication
+        panel.GetComponent<Button>().onClick.RemoveAllListeners();
+        // Add a new listener
+        panel.GetComponent<Button>().onClick.AddListener(() => OnPanelClicked(panel));
+        Time.timeScale = 0; // Pause the game
+    }
+
+    private void OnPanelClicked(GameObject panel)
+    {
+        panel.SetActive(false);
+        Time.timeScale = 1; // Resume the game
+
+        if (panel == congratulationPanel)
+        {
+            SceneController.LoadScene("Klausurphase"); 
+        }
+        else if (panel == tryAgainPanel)
+        {
+            SceneController.LoadScene("LucaNewScene");
+        }
     }
 }
