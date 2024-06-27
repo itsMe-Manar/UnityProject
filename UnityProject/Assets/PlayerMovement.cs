@@ -24,20 +24,19 @@ public class PlayerController : MonoBehaviour
     private int currentSceneIndex;
     AudioManager audioManager;
 
-  
-       void Awake() { 
-        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>(); }
-      
+    void Awake()
+    {
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+    }
+
     void Start()
     {
-
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         startPosition = rb.position;
         jumpsRemaining = maxJumps;
         currentSceneIndex = Array.IndexOf(scenes, SceneManager.GetActiveScene().name);
 
-        
         // Debug the current scene index and scenes array
         Debug.Log("Current Scene: " + SceneManager.GetActiveScene().name);
         Debug.Log("Current Scene Index: " + currentSceneIndex);
@@ -57,6 +56,12 @@ public class PlayerController : MonoBehaviour
             HandleInput();
             HandleJump();
             FlipCharacter();
+        }
+
+        // Check for mouse clicks to dismiss panels
+        if (Input.GetMouseButtonDown(0))
+        {
+            DismissPanelOnClick();
         }
     }
 
@@ -105,7 +110,7 @@ public class PlayerController : MonoBehaviour
     private void UpdateAnimatorParameters()
     {
         animator.SetFloat("xVelocity", Math.Abs(rb.velocity.x));
-        animator.SetFloat("yVelocity", Math.Abs(rb.velocity.y));
+        animator.SetFloat("yVelocity", rb.velocity.y);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -123,28 +128,24 @@ public class PlayerController : MonoBehaviour
         }
         else if (other.CompareTag("Spike"))
         {
-           
-            ResetPlayerPosition(); 
+            ResetPlayerPosition();
             audioManager.PlaySFX(audioManager.death);
         }
         else if (other.CompareTag("Door"))
         {
             if (CoinCounter.instance.currentCoins >= requiredCoins)
             {
-                
                 ShowPanel(congratulationPanel);
                 audioManager.PlaySFX(audioManager.energie);
             }
             else
             {
-               
                 ShowPanel(tryAgainPanel);
                 audioManager.PlaySFX(audioManager.death);
             }
         }
         else if (other.CompareTag("StandingTable")) // Adjust this tag as per your actual table prefab tag
         {
-            // Example: if landing on a table should reset jumping animation
             animator.SetBool("isJumping", false); // Reset jumping animation when landing on a table
         }
     }
@@ -167,8 +168,6 @@ public class PlayerController : MonoBehaviour
         animator.SetBool("isJumping", false);
     }
 
-   
-   
     private void ShowPanel(GameObject panel)
     {
         panel.SetActive(true);
@@ -186,11 +185,27 @@ public class PlayerController : MonoBehaviour
 
         if (panel == congratulationPanel)
         {
-            SceneController.LoadScene("Klausurphase"); 
+            SceneController.LoadScene("Klausurphase");
         }
         else if (panel == tryAgainPanel)
         {
             SceneController.LoadScene("LucaNewScene");
+        }
+    }
+
+    private void DismissPanelOnClick()
+    {
+        if (congratulationPanel.activeSelf)
+        {
+            SceneController.LoadScene("Klausurphase");
+        }
+        else if (tryAgainPanel.activeSelf)
+        {
+            SceneController.LoadScene("LucaNewScene");
+        }
+        else
+        {
+            Time.timeScale = 1; // Resume the game if no panel is active
         }
     }
 }
