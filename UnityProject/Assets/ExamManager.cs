@@ -7,7 +7,6 @@ public class ExamManager : MonoBehaviour
     public GameObject congratsPopup; // Reference to the "Congrats" popup GameObject
     public GameObject tryAgainPopup; // Reference to the "Try Again" popup GameObject
     public int correctAnswerIndex; // Index of the correct answer
-    public SceneController sceneController; // Reference to the SceneController
 
     void Start()
     {
@@ -61,12 +60,12 @@ public class ExamManager : MonoBehaviour
             if (congratsPopup.activeSelf)
             {
                 // Handle correct answer: go back to the map
-                sceneController.LoadScene("Map"); // Replace "MapScene" with the actual scene name
+                SceneController.LoadScene("Map"); // Replace "Map" with the actual scene name
             }
             else if (tryAgainPopup.activeSelf)
             {
                 // Handle incorrect answer: reload the current level
-                sceneController.LoadScene("LucaNewScene");
+                SceneController.LoadScene("LucaNewScene"); // Replace "LucaNewScene" with the actual scene name
             }
         }
     }
