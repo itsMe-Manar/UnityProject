@@ -7,9 +7,10 @@ public class ExamManager : MonoBehaviour
     public GameObject congratsPopup; // Reference to the "Congrats" popup GameObject
     public GameObject tryAgainPopup; // Reference to the "Try Again" popup GameObject
     public int correctAnswerIndex; // Index of the correct answer
-
+    private AudioManager audioManager;
     void Start()
     {
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
         // Ensure popups are inactive at the start
         congratsPopup.SetActive(false);
         tryAgainPopup.SetActive(false);
@@ -37,10 +38,12 @@ public class ExamManager : MonoBehaviour
             // Check if the answer is correct
             if (index == correctAnswerIndex)
             {
+                audioManager.PlaySFX(audioManager.popUpSoundHappy);
                 congratsPopup.SetActive(true);
             }
             else
             {
+                audioManager.PlaySFX(audioManager.popUpSoundsad);
                 tryAgainPopup.SetActive(true);
             }
 

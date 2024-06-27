@@ -14,6 +14,8 @@ public class PlayerController : MonoBehaviour
 
     public GameObject congratulationPanel;
     public GameObject tryAgainPanel;
+    public Button pauseButton; // Reference to the pause button
+    public GameObject pausePanel; // Reference to the pause panel
 
     private Rigidbody2D rb;
     private Vector2 startPosition;
@@ -22,32 +24,35 @@ public class PlayerController : MonoBehaviour
     private bool facingRight = true;
     private int jumpsRemaining;
     private int currentSceneIndex;
+    private bool isPaused = false; // To track the pause state
     AudioManager audioManager;
 
-  
-       void Awake() { 
-        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>(); }
-      
+    void Awake()
+    {
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+    }
+
     void Start()
     {
-
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         startPosition = rb.position;
         jumpsRemaining = maxJumps;
         currentSceneIndex = Array.IndexOf(scenes, SceneManager.GetActiveScene().name);
 
-        
-        // Debug the current scene index and scenes array
         Debug.Log("Current Scene: " + SceneManager.GetActiveScene().name);
         Debug.Log("Current Scene Index: " + currentSceneIndex);
-        for (int i = 0; i < scenes.Length; i++)
+        for (int i = 0; scenes != null && i < scenes.Length; i++)
         {
             Debug.Log("Scene " + i + ": " + scenes[i]);
         }
 
         congratulationPanel.SetActive(false);
         tryAgainPanel.SetActive(false);
+        pausePanel.SetActive(false); // Ensure pause panel is hidden initially
+
+        // Add listener for the pause button
+        pauseButton.onClick.AddListener(PauseGame);
     }
 
     void Update()
@@ -57,6 +62,12 @@ public class PlayerController : MonoBehaviour
             HandleInput();
             HandleJump();
             FlipCharacter();
+        }
+
+        // Check for click to resume the game if paused
+        if (isPaused && Input.GetMouseButtonDown(0))
+        {
+            ResumeGame();
         }
     }
 
@@ -123,21 +134,18 @@ public class PlayerController : MonoBehaviour
         }
         else if (other.CompareTag("Spike"))
         {
-           
-            ResetPlayerPosition(); 
+            ResetPlayerPosition();
             audioManager.PlaySFX(audioManager.death);
         }
         else if (other.CompareTag("Door"))
         {
             if (CoinCounter.instance.currentCoins >= requiredCoins)
             {
-                
                 ShowPanel(congratulationPanel);
                 audioManager.PlaySFX(audioManager.energie);
             }
             else
             {
-               
                 ShowPanel(tryAgainPanel);
                 audioManager.PlaySFX(audioManager.death);
             }
@@ -160,8 +168,6 @@ public class PlayerController : MonoBehaviour
         jumpsRemaining = maxJumps;
     }
 
-   
-   
     private void ShowPanel(GameObject panel)
     {
         panel.SetActive(true);
@@ -179,11 +185,27 @@ public class PlayerController : MonoBehaviour
 
         if (panel == congratulationPanel)
         {
-            SceneController.LoadScene("Klausurphase"); 
+            SceneController.LoadScene("Klausurphase");
         }
         else if (panel == tryAgainPanel)
         {
             SceneController.LoadScene("LucaNewScene");
         }
+    }
+
+    // Pause game method
+    public void PauseGame()
+    {
+        isPaused = true;
+        pausePanel.SetActive(true);
+        Time.timeScale = 0;
+    }
+
+    // Resume game method
+    public void ResumeGame()
+    {
+        isPaused = false;
+        pausePanel.SetActive(false);
+        Time.timeScale = 1;
     }
 }
