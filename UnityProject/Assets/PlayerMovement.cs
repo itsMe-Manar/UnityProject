@@ -22,6 +22,8 @@ public class PlayerController : MonoBehaviour
     private bool facingRight = true;
     private int jumpsRemaining;
     private int currentSceneIndex;
+    public string levelSceneName;
+    public string backscene;
     AudioManager audioManager;
 
     void Awake()
@@ -185,23 +187,28 @@ public class PlayerController : MonoBehaviour
 
         if (panel == congratulationPanel)
         {
-            SceneController.LoadScene("Klausurphase");
+            SceneManager.LoadScene(levelSceneName);
+            
+           
         }
         else if (panel == tryAgainPanel)
-        {
-            SceneController.LoadScene("LucaNewScene");
+        { 
+            SceneManager.LoadScene(backscene);
+           
+            
         }
     }
 
     private void DismissPanelOnClick()
     {
         if (congratulationPanel.activeSelf)
-        {
-            SceneController.LoadScene("Klausurphase");
+        {SceneManager.LoadScene(levelSceneName);
+           
+           
         }
         else if (tryAgainPanel.activeSelf)
-        {
-            SceneController.LoadScene("LucaNewScene");
+        { SceneManager.LoadScene(backscene);
+           
         }
         else
         {

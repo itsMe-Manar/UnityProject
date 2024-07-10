@@ -306,12 +306,12 @@ RectTransform:
   - {fileID: 2025331644}
   - {fileID: 1458473458}
   - {fileID: 124140665}
-  - {fileID: 562973640}
-  - {fileID: 1686496725}
   - {fileID: 1802501790}
   - {fileID: 892821416}
   - {fileID: 1908313229}
   - {fileID: 377966916}
+  - {fileID: 562973640}
+  - {fileID: 1686496725}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -450,6 +450,10 @@ MonoBehaviour:
   congratsPopup: {fileID: 562973639}
   tryAgainPopup: {fileID: 1686496724}
   correctAnswerIndex: 2
+  examDuration: 10
+  timerText: {fileID: 377966917}
+  levelSceneName: Level2
+  levelIndex: 2
 --- !u!1 &377966915
 GameObject:
   m_ObjectHideFlags: 0
@@ -462,7 +466,7 @@ GameObject:
   - component: {fileID: 377966918}
   - component: {fileID: 377966917}
   m_Layer: 5
-  m_Name: Text (2)
+  m_Name: timerText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1349,7 +1353,7 @@ GameObject:
   - component: {fileID: 1263042420}
   - component: {fileID: 1263042422}
   m_Layer: 5
-  m_Name: Toggle
+  m_Name: Toggle1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1835,7 +1839,7 @@ GameObject:
   - component: {fileID: 1458473459}
   - component: {fileID: 1458473462}
   m_Layer: 5
-  m_Name: Toggle (2)
+  m_Name: Toggle4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2049,7 +2053,7 @@ GameObject:
   - component: {fileID: 1511328221}
   - component: {fileID: 1511328224}
   m_Layer: 5
-  m_Name: Toggle
+  m_Name: Toggle2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2968,7 +2972,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 10.2, y: 54.8}
+  m_AnchoredPosition: {x: 10.2, y: 80}
   m_SizeDelta: {x: 151.07, y: 105.71}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1908313230
@@ -3027,7 +3031,7 @@ GameObject:
   - component: {fileID: 2025331645}
   - component: {fileID: 2025331648}
   m_Layer: 5
-  m_Name: Toggle (1)
+  m_Name: Toggle3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3239,6 +3243,6 @@ SceneRoots:
   - {fileID: 220272869}
   - {fileID: 1631853819}
   - {fileID: 1813357779}
+  - {fileID: 1521610165}
   - {fileID: 841626989}
   - {fileID: 1087039737}
-  - {fileID: 1521610165}

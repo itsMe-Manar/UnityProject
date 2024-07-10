@@ -440,12 +440,12 @@ RectTransform:
   - {fileID: 2025331644}
   - {fileID: 1458473458}
   - {fileID: 124140665}
-  - {fileID: 562973640}
-  - {fileID: 1686496725}
   - {fileID: 1886636411}
   - {fileID: 1187032272}
   - {fileID: 620908804}
   - {fileID: 873740264}
+  - {fileID: 562973640}
+  - {fileID: 1686496725}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -663,6 +663,10 @@ MonoBehaviour:
   congratsPopup: {fileID: 562973639}
   tryAgainPopup: {fileID: 1686496724}
   correctAnswerIndex: 2
+  examDuration: 10
+  timerText: {fileID: 620908805}
+  levelSceneName: Level1
+  levelIndex: 1
 --- !u!1 &443954578
 GameObject:
   m_ObjectHideFlags: 0
@@ -821,7 +825,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1631853821}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: PauseMenu1, Assembly-CSharp
         m_MethodName: QuitGame
         m_Mode: 1
@@ -896,7 +900,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 562973639}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 8, y: 6, z: 5}
   m_ConstrainProportionsScale: 0
@@ -905,7 +909,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 4, y: -10}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &562973641
@@ -958,7 +962,7 @@ GameObject:
   - component: {fileID: 620908806}
   - component: {fileID: 620908805}
   m_Layer: 5
-  m_Name: Text (2)
+  m_Name: TimerText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1460,7 +1464,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1631853821}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: PauseMenu1, Assembly-CSharp
         m_MethodName: ResumeGame
         m_Mode: 1
@@ -1616,7 +1620,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &873740264
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1700,6 +1704,50 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!1 &990626125
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 990626127}
+  - component: {fileID: 990626126}
+  m_Layer: 0
+  m_Name: LevelManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &990626126
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 990626125}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3d548924671e9645b0803fc697bfaa3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &990626127
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 990626125}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 827.18994, y: 515.4984, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1097259494
 GameObject:
   m_ObjectHideFlags: 0
@@ -2206,7 +2254,7 @@ GameObject:
   - component: {fileID: 1263042420}
   - component: {fileID: 1263042422}
   m_Layer: 5
-  m_Name: Toggle
+  m_Name: Toggle1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2327,7 +2375,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 19.6
+  m_fontSize: 23.25
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -2363,7 +2411,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: -4.9207306, y: 0, z: 0, w: -3.6906023}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -2557,7 +2605,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1631853821}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: PauseMenu1, Assembly-CSharp
         m_MethodName: PauseGame
         m_Mode: 1
@@ -2825,7 +2873,7 @@ GameObject:
   - component: {fileID: 1458473459}
   - component: {fileID: 1458473462}
   m_Layer: 5
-  m_Name: Toggle (2)
+  m_Name: Toggle4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3039,7 +3087,7 @@ GameObject:
   - component: {fileID: 1511328221}
   - component: {fileID: 1511328224}
   m_Layer: 5
-  m_Name: Toggle
+  m_Name: Toggle2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3112,7 +3160,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 19.6
+  m_fontSize: 25.05
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -3148,7 +3196,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: -6.766075, y: 0, z: 0, w: -5.535862}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -3324,7 +3372,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1631853819}
   - component: {fileID: 1631853820}
-  - component: {fileID: 1631853821}
   m_Layer: 0
   m_Name: SceneManager
   m_TagString: Untagged
@@ -3359,19 +3406,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 795254105a0f6d24d8340d656cb5de22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1631853821
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1631853818}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a90dadfeb22cd2a4888925a97e396237, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pauseMenu: {fileID: 83756690}
 --- !u!1 &1643534154
 GameObject:
   m_ObjectHideFlags: 0
@@ -3534,7 +3568,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1686496724}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 8, y: 6, z: 5}
   m_ConstrainProportionsScale: 0
@@ -3543,7 +3577,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 4, y: -10}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1686496726
@@ -3897,7 +3931,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 13.701, y: 53.391}
+  m_AnchoredPosition: {x: 13.701, y: 80}
   m_SizeDelta: {x: 151.07, y: 105.71}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1886636412
@@ -4029,7 +4063,7 @@ GameObject:
   - component: {fileID: 2025331645}
   - component: {fileID: 2025331648}
   m_Layer: 5
-  m_Name: Toggle (1)
+  m_Name: Toggle3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4301,3 +4335,4 @@ SceneRoots:
   - {fileID: 1813357779}
   - {fileID: 3443969326244602308}
   - {fileID: 1940517636}
+  - {fileID: 990626127}

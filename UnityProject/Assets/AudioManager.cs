@@ -1,15 +1,14 @@
-
 using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
+    public static AudioManager instance;
+
     [Header("---------- Audio Source ----------")]
-   
     [SerializeField] AudioSource musicSource;
     [SerializeField] AudioSource SFXSource;
 
-    [Header("---------- Audio Source ----------")]
-
+    [Header("---------- Audio Clips ----------")]
     public AudioClip background;
     public AudioClip death;
     public AudioClip coins;
@@ -17,6 +16,19 @@ public class AudioManager : MonoBehaviour
     public AudioClip hoverSound;
     public AudioClip popUpSoundHappy;
     public AudioClip popUpSoundsad;
+
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
 
     private void Start()
     {
@@ -37,5 +49,13 @@ public class AudioManager : MonoBehaviour
         }
     }
 
+    public void SetMusicVolume(float volume)
+    {
+        musicSource.volume = volume;
+    }
 
+    public void SetSFXVolume(float volume)
+    {
+        SFXSource.volume = volume;
+    }
 }

@@ -2338,6 +2338,8 @@ MonoBehaviour:
   requiredCoins: 1
   congratulationPanel: {fileID: 198276741}
   tryAgainPanel: {fileID: 1328890532}
+  levelSceneName: Klausurphase2
+  backscene: Level2
 --- !u!50 &748944582
 Rigidbody2D:
   serializedVersion: 4
@@ -16037,7 +16039,7 @@ Transform:
   m_GameObject: {fileID: 1774827571}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 46.32, y: -1.85, z: 0}
+  m_LocalPosition: {x: 4.01, y: -1.85, z: 0}
   m_LocalScale: {x: 0.3843388, y: 0.3591951, z: 0.3591951}
   m_ConstrainProportionsScale: 0
   m_Children: []

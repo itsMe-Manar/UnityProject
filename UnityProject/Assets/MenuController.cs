@@ -6,6 +6,7 @@ public class MenuController : MonoBehaviour
     public GameObject playButton;
     public GameObject settingsButton;
     public GameObject newButton;
+    public GameObject creditsButton;
 
     void Update()
     {
@@ -27,6 +28,9 @@ public class MenuController : MonoBehaviour
                 else if (hit.collider.gameObject == settingsButton)
                 {
                     OnSettingsButtonClicked();
+                }else if (hit.collider.gameObject == creditsButton)
+                {
+                    OnCreditsButtonClicked();
                 }
             }
         }
@@ -37,18 +41,21 @@ public class MenuController : MonoBehaviour
         // Load the map scene
         SceneManager.LoadScene("Map");
     }
-
     void OnNewButtonClicked()
     {
         // Reset the game state
         ResetGame();
         // Load the map scene
-        SceneManager.LoadScene("Map");
+        SceneManager.LoadScene("newGameMenu");
     }
 
     void OnSettingsButtonClicked()
     {
-        // Currently do nothing
+        SceneManager.LoadScene("mapMenuSettings");
+    }
+    void OnCreditsButtonClicked()
+    {
+        SceneManager.LoadScene("creditScreen");
     }
 
     void ResetGame()

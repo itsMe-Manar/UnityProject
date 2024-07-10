@@ -9,12 +9,27 @@ EditorBuildSettings:
     path: Assets/Game/Scenes/Menu.unity
     guid: 21b4af4d044214942a54638a9fcd5b8f
   - enabled: 1
-    path: Assets/Game/Scenes/map.unity
-    guid: 18caa29cbb794da48b75a18d6000e3d3
-  - enabled: 1
     path: Assets/Game/Scenes/Level1.unity
     guid: 93fc447fc2993144eb152fa171ba995c
   - enabled: 1
+    path: Assets/Game/Scenes/Level2.unity
+    guid: 79e137e13cfc60248bd9ac1ddf923d38
+  - enabled: 1
+    path: Assets/Game/Scenes/map.unity
+    guid: 18caa29cbb794da48b75a18d6000e3d3
+  - enabled: 1
+    path: Assets/Game/Scenes/Klausurphase1.unity
+    guid: 548664f437af19149ab95e1b2e8487d6
+  - enabled: 1
     path: Assets/Game/Scenes/Klausurphase2.unity
     guid: 296f357ca49b0af4584df38a20a336f0
+  - enabled: 1
+    path: Assets/Game/Scenes/creditScreen.unity
+    guid: 90af27b74de35dc4cbed966c1a51750a
+  - enabled: 1
+    path: Assets/Game/Scenes/mapMenuSettings.unity
+    guid: 17528495c6641f048b911e1e447cca2d
+  - enabled: 1
+    path: Assets/Game/Scenes/newGameMenu.unity
+    guid: e6d3961bfe2cec74a8c68d7f608a9c95
   m_configObjects: {}

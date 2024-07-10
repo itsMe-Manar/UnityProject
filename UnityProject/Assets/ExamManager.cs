@@ -1,45 +1,100 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class ExamManager : MonoBehaviour
 {
-    public Toggle[] answerToggles; // Array to hold the toggles
-    public GameObject congratsPopup; // Reference to the "Congrats" popup GameObject
-    public GameObject tryAgainPopup; // Reference to the "Try Again" popup GameObject
-    public int correctAnswerIndex; // Index of the correct answer
+    public Toggle[] answerToggles;
+    public GameObject congratsPopup;
+    public GameObject tryAgainPopup;
+    public int correctAnswerIndex;
+    public float examDuration = 60f; // Original duration
+    public Text timerText;
+
+    private float timer;
+    private bool examFinished = false;
     private AudioManager audioManager;
+    public string levelSceneName;
+    public int levelIndex;
+
     void Start()
     {
+        Debug.Log("ExamManager Start");
+
+        // Ensure the game is not paused
+        Time.timeScale = 1;
+
         audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
-        // Ensure popups are inactive at the start
         congratsPopup.SetActive(false);
         tryAgainPopup.SetActive(false);
 
-        // Initialize all toggles to be off and interactable
         foreach (Toggle toggle in answerToggles)
         {
-            toggle.isOn = false; // Ensure the toggle is off
-            toggle.interactable = true; // Ensure the toggle is interactable
+            toggle.isOn = false;
+            toggle.interactable = true;
         }
 
-        // Add listeners to the toggles
         for (int i = 0; i < answerToggles.Length; i++)
         {
-            int index = i; // Cache the index to avoid closure issues
+            int index = i;
             answerToggles[i].onValueChanged.AddListener(delegate { OnToggleValueChanged(index); });
+        }
+
+        // Initialize the timer
+        timer = examDuration;
+        Debug.Log("Timer Initialized: " + timer);
+
+        UpdateTimerText();
+    }
+
+    void Update()
+    {
+        Debug.Log("Update called - Timer: " + timer + " examFinished: " + examFinished);
+
+        if (!examFinished)
+        {
+            // Check Time.deltaTime value
+            Debug.Log("Time.deltaTime: " + Time.deltaTime);
+            Debug.Log("Time.timeScale: " + Time.timeScale);
+            Debug.Log("Frame Count: " + Time.frameCount);
+
+            // Decrease the timer
+            timer -= Time.deltaTime;
+
+            // Log after decrement
+            Debug.Log("Timer after decrement: " + timer);
+
+            if (timer <= 0)
+            {
+                timer = 0;
+                OnExamTimeUp();
+            }
+
+            UpdateTimerText();
+        }
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            if (congratsPopup.activeSelf)
+            {
+                SceneController.LoadScene("Map");
+            }
+            else if (tryAgainPopup.activeSelf)
+            {
+                SceneManager.LoadScene(levelSceneName);
+            }
         }
     }
 
     void OnToggleValueChanged(int index)
     {
-        // Check if the toggle was turned on
         if (answerToggles[index].isOn)
         {
-            // Check if the answer is correct
             if (index == correctAnswerIndex)
             {
                 audioManager.PlaySFX(audioManager.popUpSoundHappy);
                 congratsPopup.SetActive(true);
+                LevelManager.Instance.MarkLevelAsCompleted(levelIndex);
             }
             else
             {
@@ -47,33 +102,28 @@ public class ExamManager : MonoBehaviour
                 tryAgainPopup.SetActive(true);
             }
 
-            // Disable all toggles to prevent multiple selections
             foreach (Toggle toggle in answerToggles)
             {
                 toggle.interactable = false;
             }
+
+            examFinished = true;
         }
     }
 
-    void Update()
+    void OnExamTimeUp()
     {
-        // Check for user click to handle popup
-        if (Input.GetMouseButtonDown(0))
+        audioManager.PlaySFX(audioManager.popUpSoundsad);
+        tryAgainPopup.SetActive(true);
+
+        foreach (Toggle toggle in answerToggles)
         {
-            if (congratsPopup.activeSelf)
-            {
-                // Handle correct answer: go back to the map
-                SceneController.LoadScene("Map"); // Replace "Map" with the actual scene name
-            }
-            else if (tryAgainPopup.activeSelf)
-            {
-                // Handle incorrect answer: reload the current level
-                SceneController.LoadScene("LucaNewScene"); // Replace "LucaNewScene" with the actual scene name
-            }
+            toggle.interactable = false;
         }
+
+        examFinished = true;
     }
 
-    // Reset function to be called when retrying the exam
     public void ResetExam()
     {
         congratsPopup.SetActive(false);
@@ -84,5 +134,16 @@ public class ExamManager : MonoBehaviour
             toggle.isOn = false;
             toggle.interactable = true;
         }
+
+        timer = examDuration;
+        examFinished = false;
+        UpdateTimerText();
+    }
+
+    void UpdateTimerText()
+    {
+        int minutes = Mathf.FloorToInt(timer / 60f);
+        int seconds = Mathf.FloorToInt(timer % 60f);
+        timerText.text = string.Format("TIMER: {0:00}:{1:00}", minutes, seconds);
     }
 }
