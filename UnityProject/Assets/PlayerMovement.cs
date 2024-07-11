@@ -9,7 +9,6 @@ public class PlayerController : MonoBehaviour
     public float jumpForce = 10f;
     public int maxJumps = 2;
     public Animator animator;
-    public string[] scenes;
     public int requiredCoins = 10;
 
     public GameObject congratulationPanel;
@@ -21,10 +20,9 @@ public class PlayerController : MonoBehaviour
     private bool isGrounded = false;
     private bool facingRight = true;
     private int jumpsRemaining;
-    private int currentSceneIndex;
     public string levelSceneName;
     public string backscene;
-    AudioManager audioManager;
+    private AudioManager audioManager;
 
     void Awake()
     {
@@ -37,15 +35,6 @@ public class PlayerController : MonoBehaviour
         animator = GetComponent<Animator>();
         startPosition = rb.position;
         jumpsRemaining = maxJumps;
-        currentSceneIndex = Array.IndexOf(scenes, SceneManager.GetActiveScene().name);
-
-        // Debug the current scene index and scenes array
-        Debug.Log("Current Scene: " + SceneManager.GetActiveScene().name);
-        Debug.Log("Current Scene Index: " + currentSceneIndex);
-        for (int i = 0; i < scenes.Length; i++)
-        {
-            Debug.Log("Scene " + i + ": " + scenes[i]);
-        }
 
         congratulationPanel.SetActive(false);
         tryAgainPanel.SetActive(false);
@@ -58,23 +47,24 @@ public class PlayerController : MonoBehaviour
             HandleInput();
             HandleJump();
             FlipCharacter();
+            MovePlayer(); // Move in Update instead of FixedUpdate
+            UpdateAnimatorParameters();
         }
 
-        // Check for mouse clicks to dismiss panels
         if (Input.GetMouseButtonDown(0))
         {
             DismissPanelOnClick();
         }
     }
 
-    void FixedUpdate()
+   /* void FixedUpdate()
     {
         if (Time.timeScale > 0)
         {
             MovePlayer();
             UpdateAnimatorParameters();
         }
-    }
+    }*/
 
     private void HandleInput()
     {
@@ -96,6 +86,7 @@ public class PlayerController : MonoBehaviour
     private void MovePlayer()
     {
         rb.velocity = new Vector2(movement.x, rb.velocity.y);
+      //  Debug.Log("Player velocity: " + rb.velocity);
     }
 
     private void FlipCharacter()
@@ -117,6 +108,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        Debug.Log("Trigger Enter: " + other.tag);
         if (other.CompareTag("Floor"))
         {
             isGrounded = true;
@@ -146,14 +138,15 @@ public class PlayerController : MonoBehaviour
                 audioManager.PlaySFX(audioManager.death);
             }
         }
-        else if (other.CompareTag("StandingTable")) // Adjust this tag as per your actual table prefab tag
+        else if (other.CompareTag("StandingTable"))
         {
-            animator.SetBool("isJumping", false); // Reset jumping animation when landing on a table
+            animator.SetBool("isJumping", false);
         }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        Debug.Log("Collision Enter: " + collision.collider.tag);
         if (collision.gameObject.CompareTag("Floor"))
         {
             isGrounded = true;
@@ -173,46 +166,39 @@ public class PlayerController : MonoBehaviour
     private void ShowPanel(GameObject panel)
     {
         panel.SetActive(true);
-        // Remove all previous listeners to avoid duplication
         panel.GetComponent<Button>().onClick.RemoveAllListeners();
-        // Add a new listener
         panel.GetComponent<Button>().onClick.AddListener(() => OnPanelClicked(panel));
-        Time.timeScale = 0; // Pause the game
+        Time.timeScale = 0;
     }
 
     private void OnPanelClicked(GameObject panel)
     {
         panel.SetActive(false);
-        Time.timeScale = 1; // Resume the game
+        Time.timeScale = 1;
 
         if (panel == congratulationPanel)
         {
             SceneManager.LoadScene(levelSceneName);
-            
-           
         }
         else if (panel == tryAgainPanel)
-        { 
+        {
             SceneManager.LoadScene(backscene);
-           
-            
         }
     }
 
     private void DismissPanelOnClick()
     {
         if (congratulationPanel.activeSelf)
-        {SceneManager.LoadScene(levelSceneName);
-           
-           
+        {
+            SceneManager.LoadScene(levelSceneName);
         }
         else if (tryAgainPanel.activeSelf)
-        { SceneManager.LoadScene(backscene);
-           
+        {
+            SceneManager.LoadScene(backscene);
         }
         else
         {
-            Time.timeScale = 1; // Resume the game if no panel is active
+            Time.timeScale = 1;
         }
     }
 }

@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class AudioManager : MonoBehaviour
 {
@@ -9,11 +10,14 @@ public class AudioManager : MonoBehaviour
     [SerializeField] AudioSource SFXSource;
 
     [Header("---------- Audio Clips ----------")]
-    public AudioClip background;
+    public AudioClip mapBackground;
+    public AudioClip levelBackground;
+    public AudioClip examBackground;
     public AudioClip death;
     public AudioClip coins;
     public AudioClip energie;
     public AudioClip hoverSound;
+    public AudioClip clickSound;
     public AudioClip popUpSoundHappy;
     public AudioClip popUpSoundsad;
 
@@ -32,7 +36,39 @@ public class AudioManager : MonoBehaviour
 
     private void Start()
     {
-        musicSource.clip = background;
+        SceneManager.sceneLoaded += OnSceneLoaded;
+        PlayBackgroundMusic(SceneManager.GetActiveScene().name); // Play initial scene music
+    }
+
+    private void OnDestroy()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        PlayBackgroundMusic(scene.name);
+    }
+
+    public void PlayBackgroundMusic(string sceneName)
+    {
+        if (sceneName == "Map")
+        {
+            musicSource.clip = mapBackground;
+        }
+        else if (sceneName.StartsWith("Level"))
+        {
+            musicSource.clip = levelBackground;
+        }
+        else if (sceneName.StartsWith("Klausurphase"))  // Add this check for the exam phase
+        {
+            musicSource.clip = examBackground;
+        }
+        else
+        {
+            musicSource.clip = mapBackground; // Default music
+        }
+
         musicSource.Play();
     }
 
@@ -46,6 +82,14 @@ public class AudioManager : MonoBehaviour
         if (hoverSound != null)
         {
             SFXSource.PlayOneShot(hoverSound);
+        }
+    }
+
+    public void PlayClickSound()
+    {
+        if (clickSound != null)
+        {
+            SFXSource.PlayOneShot(clickSound);
         }
     }
 
