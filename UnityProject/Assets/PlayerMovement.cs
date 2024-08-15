@@ -47,7 +47,7 @@ public class PlayerController : MonoBehaviour
             HandleInput();
             HandleJump();
             FlipCharacter();
-            MovePlayer(); // Move in Update instead of FixedUpdate
+            MovePlayer();
             UpdateAnimatorParameters();
         }
 
@@ -57,15 +57,6 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-   /* void FixedUpdate()
-    {
-        if (Time.timeScale > 0)
-        {
-            MovePlayer();
-            UpdateAnimatorParameters();
-        }
-    }*/
-
     private void HandleInput()
     {
         float horizontalInput = Input.GetAxisRaw("Horizontal");
@@ -74,7 +65,7 @@ public class PlayerController : MonoBehaviour
 
     private void HandleJump()
     {
-        if (Input.GetButtonDown("Jump") && (isGrounded || jumpsRemaining > 0))
+        if (Input.GetButtonDown("Jump") && jumpsRemaining > 0)
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
             jumpsRemaining--;
@@ -86,7 +77,6 @@ public class PlayerController : MonoBehaviour
     private void MovePlayer()
     {
         rb.velocity = new Vector2(movement.x, rb.velocity.y);
-      //  Debug.Log("Player velocity: " + rb.velocity);
     }
 
     private void FlipCharacter()
@@ -109,7 +99,7 @@ public class PlayerController : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         Debug.Log("Trigger Enter: " + other.tag);
-        if (other.CompareTag("Floor"))
+        if (other.CompareTag("Floor") || other.CompareTag("Stift") || other.CompareTag("StandingTable"))
         {
             isGrounded = true;
             jumpsRemaining = maxJumps;
@@ -134,14 +124,11 @@ public class PlayerController : MonoBehaviour
             }
             else
             {
-                ShowPanel(tryAgainPanel);
+                ResetPlayerPosition();
                 audioManager.PlaySFX(audioManager.death);
             }
         }
-        else if (other.CompareTag("StandingTable"))
-        {
-            animator.SetBool("isJumping", false);
-        }
+      
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

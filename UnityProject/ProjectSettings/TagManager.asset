@@ -11,6 +11,7 @@ TagManager:
   - Spike
   - StandingTable
   - Door
+  - Stift
   layers:
   - Default
   - TransparentFX

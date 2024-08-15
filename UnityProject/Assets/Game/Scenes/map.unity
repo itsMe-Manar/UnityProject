@@ -408,7 +408,7 @@ MonoBehaviour:
   levelIndex: 3
   completedColor: {r: 0.3921569, g: 0.9960785, b: 0.9215687, a: 1}
   defaultColor: {r: 0.9960785, g: 0.28235295, b: 0.9058824, a: 1}
-  levelSceneName: 
+  levelSceneName: Level3
 --- !u!61 &66890901
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1115,6 +1115,7 @@ MonoBehaviour:
   SFXSource: {fileID: 1397130152}
   mapBackground: {fileID: 8300000, guid: 52703d612f553794f90ce7062dd98fdc, type: 3}
   levelBackground: {fileID: 8300000, guid: 3e860f85d18a56245842c2bc55d48f84, type: 3}
+  examBackground: {fileID: 0}
   death: {fileID: 0}
   coins: {fileID: 0}
   energie: {fileID: 0}
