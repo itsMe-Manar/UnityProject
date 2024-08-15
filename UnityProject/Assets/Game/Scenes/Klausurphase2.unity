@@ -578,7 +578,7 @@ MonoBehaviour:
   congratsPopup: {fileID: 562973639}
   tryAgainPopup: {fileID: 1686496724}
   correctAnswerIndex: 2
-  examDuration: 10
+  examDuration: 30
   timerText: {fileID: 377966917}
   levelSceneName: Level2
   levelIndex: 2
