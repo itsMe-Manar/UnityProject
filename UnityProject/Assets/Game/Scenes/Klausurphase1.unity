@@ -662,8 +662,8 @@ MonoBehaviour:
   - {fileID: 1458473461}
   congratsPopup: {fileID: 562973639}
   tryAgainPopup: {fileID: 1686496724}
-  correctAnswerIndex: 2
-  examDuration: 10
+  correctAnswerIndex: 1
+  examDuration: 30
   timerText: {fileID: 620908805}
   levelSceneName: Level1
   levelIndex: 1
@@ -3724,11 +3724,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   musicSource: {fileID: 1367190563}
   SFXSource: {fileID: 1153505989}
-  background: {fileID: 8300000, guid: ca02ac9ef17629e419d3eb2e7b372246, type: 3}
+  mapBackground: {fileID: 0}
+  levelBackground: {fileID: 0}
+  examBackground: {fileID: 0}
   death: {fileID: 8300000, guid: 79ad2c223d7d5cd4d92bc6e9d303f2e2, type: 3}
   coins: {fileID: 0}
   energie: {fileID: 8300000, guid: bb2d04d0748ba1643af84756e37682cc, type: 3}
   hoverSound: {fileID: 8300000, guid: 549724badcc4f7e4e8fcc714578e08b5, type: 3}
+  clickSound: {fileID: 0}
   popUpSoundHappy: {fileID: 8300000, guid: bb2d04d0748ba1643af84756e37682cc, type: 3}
   popUpSoundsad: {fileID: 8300000, guid: 79ad2c223d7d5cd4d92bc6e9d303f2e2, type: 3}
 --- !u!4 &1813357779
