@@ -99,22 +99,21 @@ public class PlayerController : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         Debug.Log("Trigger Enter: " + other.tag);
-        if (other.CompareTag("Floor") || other.CompareTag("Stift") || other.CompareTag("StandingTable"))
-        {
-            isGrounded = true;
-            jumpsRemaining = maxJumps;
-            animator.SetBool("isJumping", false);
-        }
-        else if (other.CompareTag("Coin"))
+
+        if (other.CompareTag("Coin"))
         {
             Destroy(other.gameObject);
             CoinCounter.instance.IncreaseCoins(1);
         }
-        else if (other.CompareTag("Spike"))
-        {
-            ResetPlayerPosition();
-            audioManager.PlaySFX(audioManager.death);
-        }
+        else if  (other.CompareTag("Spike")){
+
+            Debug.Log("Trigger Enter: " + other.tag);
+                    Debug.Log("Hit a spike!");
+                    ResetPlayerPosition();
+                    audioManager.PlaySFX(audioManager.death);
+                }
+            
+
         else if (other.CompareTag("Door"))
         {
             if (CoinCounter.instance.currentCoins >= requiredCoins)
@@ -128,17 +127,33 @@ public class PlayerController : MonoBehaviour
                 audioManager.PlaySFX(audioManager.death);
             }
         }
-      
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         Debug.Log("Collision Enter: " + collision.collider.tag);
-        if (collision.gameObject.CompareTag("Floor"))
+        if (collision.gameObject.CompareTag("Floor") || collision.gameObject.CompareTag("Stift") || collision.gameObject.CompareTag("StandingTable"))
         {
             isGrounded = true;
             jumpsRemaining = maxJumps;
             animator.SetBool("isJumping", false);
+        }
+     
+    }
+
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Floor") || collision.gameObject.CompareTag("Stift") || collision.gameObject.CompareTag("StandingTable"))
+        {
+            isGrounded = true;
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Floor") || collision.gameObject.CompareTag("Stift") || collision.gameObject.CompareTag("StandingTable"))
+        {
+            isGrounded = false;
         }
     }
 

@@ -57,6 +57,7 @@ public class MovingPlatform : MonoBehaviour
             if (position.x >= startPosition.x + moveDistance)
             {
                 movingUpOrRight = false;
+                movingUpOrRight = false;
             }
         }
         else
