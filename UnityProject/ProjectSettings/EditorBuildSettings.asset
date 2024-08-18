@@ -15,6 +15,12 @@ EditorBuildSettings:
     path: Assets/Game/Scenes/Level2.unity
     guid: 79e137e13cfc60248bd9ac1ddf923d38
   - enabled: 1
+    path: Assets/Game/Scenes/Level3.unity
+    guid: cd2724c2eafc26945b04ce36ec7722c0
+  - enabled: 1
+    path: Assets/Game/Scenes/Level4.unity
+    guid: f6776d185dca5494dbc405757efd0296
+  - enabled: 1
     path: Assets/Game/Scenes/map.unity
     guid: 18caa29cbb794da48b75a18d6000e3d3
   - enabled: 1
@@ -23,6 +29,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Game/Scenes/Klausurphase2.unity
     guid: 296f357ca49b0af4584df38a20a336f0
+  - enabled: 1
+    path: Assets/Game/Scenes/Klausurphase3.unity
+    guid: 3ad1aee8e95dc82429cf78fd9146c629
   - enabled: 1
     path: Assets/Game/Scenes/creditScreen.unity
     guid: 90af27b74de35dc4cbed966c1a51750a

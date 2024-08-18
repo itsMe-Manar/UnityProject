@@ -580,8 +580,8 @@ MonoBehaviour:
   correctAnswerIndex: 2
   examDuration: 30
   timerText: {fileID: 377966917}
-  levelSceneName: Level2
-  levelIndex: 2
+  levelSceneName: Level3
+  levelIndex: 3
 --- !u!1 &377966915
 GameObject:
   m_ObjectHideFlags: 0
