@@ -266,8 +266,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5797a292cb52e24e9bf6df6050acc4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 1.3
-  moveDistance: 1.5
+  moveSpeed: 2
+  moveDistance: 7
   moveDirection: horizontal
 --- !u!1 &10619793 stripped
 GameObject:
@@ -26624,7 +26624,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 1.3
-  moveDistance: 1.5
+  moveDistance: 6
   moveDirection: horizontal
 --- !u!1 &1626067158 stripped
 GameObject:
@@ -27800,8 +27800,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5797a292cb52e24e9bf6df6050acc4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 1.3
-  moveDistance: 1.5
+  moveSpeed: 1.7
+  moveDistance: 4
   moveDirection: horizontal
 --- !u!1 &1762093110
 GameObject:

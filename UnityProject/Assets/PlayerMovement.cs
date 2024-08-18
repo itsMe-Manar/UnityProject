@@ -138,6 +138,10 @@ public class PlayerController : MonoBehaviour
             jumpsRemaining = maxJumps;
             animator.SetBool("isJumping", false);
         }
+         if (collision.gameObject.CompareTag("Stift"))
+        {
+            transform.parent = collision.transform;
+        }
      
     }
 
@@ -151,10 +155,15 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionExit2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Floor") || collision.gameObject.CompareTag("Stift") || collision.gameObject.CompareTag("StandingTable"))
+        if (collision.gameObject.CompareTag("Floor") || collision.gameObject.CompareTag("StandingTable"))
         {
             isGrounded = false;
         }
+           if (collision.gameObject.CompareTag("Stift"))
+    {
+        // Loslösen von der Plattform
+        transform.parent = null;
+    }
     }
 
     private void ResetPlayerPosition()
