@@ -5213,7 +5213,7 @@ Transform:
   m_GameObject: {fileID: 748944577}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.49, y: -2.16, z: 0}
+  m_LocalPosition: {x: -3.8, y: -2.16, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -5241,6 +5241,7 @@ MonoBehaviour:
   tryAgainPanel: {fileID: 1328890532}
   levelSceneName: Klausurphase3
   backscene: Level3
+  fallThreshold: -10
   groundCheck: {fileID: 1744509907}
   groundCheckRadius: 0.2
   groundLayer:

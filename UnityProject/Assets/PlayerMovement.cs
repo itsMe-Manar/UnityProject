@@ -23,6 +23,7 @@ public class PlayerController : MonoBehaviour
     public string levelSceneName;
     public string backscene;
     private AudioManager audioManager;
+    public float fallThreshold = -10f;
 
     // New variables for ground detection
     public Transform groundCheck; // Assign this in the Unity Inspector
@@ -50,11 +51,18 @@ public class PlayerController : MonoBehaviour
         if (Time.timeScale > 0)
         {
             HandleInput();
-            CheckGrounded(); // Updated ground check
+            CheckGrounded();
             HandleJump();
             FlipCharacter();
             MovePlayer();
             UpdateAnimatorParameters();
+
+            // Check if the player has fallen off the cliff
+            if (rb.position.y < fallThreshold)
+            {
+                audioManager.PlaySFX(audioManager.death);
+                ResetPlayerPosition();
+            }
         }
 
         if (Input.GetMouseButtonDown(0))
@@ -62,7 +70,6 @@ public class PlayerController : MonoBehaviour
             DismissPanelOnClick();
         }
     }
-
     private void HandleInput()
     {
         float horizontalInput = Input.GetAxisRaw("Horizontal");
