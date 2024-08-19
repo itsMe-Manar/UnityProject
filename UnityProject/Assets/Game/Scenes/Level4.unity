@@ -6420,8 +6420,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 2
-  moveDistance: 4
-  moveDirection: vertical
+  moveDistance: 10
+  moveDirection: horizontal
   moveOnlyRight: 1
 --- !u!212 &315081591
 SpriteRenderer:
@@ -6484,7 +6484,7 @@ Transform:
   m_GameObject: {fileID: 315081588}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 1, w: 0}
-  m_LocalPosition: {x: 79.65, y: 12.02, z: 0}
+  m_LocalPosition: {x: 79.71, y: 16.28, z: 0}
   m_LocalScale: {x: 1.1235967, y: 0.81588763, z: 1.0676537}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -65115,7 +65115,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 3
-  moveDistance: 7
+  moveDistance: 6
   moveDirection: vertical
   moveOnlyRight: 1
 --- !u!212 &1728446245
