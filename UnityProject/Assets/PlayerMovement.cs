@@ -1,6 +1,6 @@
-using System;
-using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine;
+using System;
 using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
@@ -24,6 +24,11 @@ public class PlayerController : MonoBehaviour
     public string backscene;
     private AudioManager audioManager;
 
+    // New variables for ground detection
+    public Transform groundCheck; // Assign this in the Unity Inspector
+    public float groundCheckRadius = 0.2f; // Radius of the overlap circle
+    public LayerMask groundLayer; // Assign this in the Unity Inspector
+
     void Awake()
     {
         audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
@@ -45,6 +50,7 @@ public class PlayerController : MonoBehaviour
         if (Time.timeScale > 0)
         {
             HandleInput();
+            CheckGrounded(); // Updated ground check
             HandleJump();
             FlipCharacter();
             MovePlayer();
@@ -69,7 +75,7 @@ public class PlayerController : MonoBehaviour
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
             jumpsRemaining--;
-            isGrounded = false;
+            isGrounded = false; // Prevent additional jumps until grounded again
             animator.SetBool("isJumping", true);
         }
     }
@@ -96,6 +102,32 @@ public class PlayerController : MonoBehaviour
         animator.SetFloat("yVelocity", rb.velocity.y);
     }
 
+    // Step 2: Implement the ground detection
+    private void CheckGrounded()
+    {
+        isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
+        if (isGrounded)
+        {
+            jumpsRemaining = maxJumps;
+            animator.SetBool("isJumping", false);
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Stift"))
+        {
+            transform.parent = collision.transform;
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Stift"))
+        {
+            transform.parent = null;
+        }
+    }
     private void OnTriggerEnter2D(Collider2D other)
     {
         Debug.Log("Trigger Enter: " + other.tag);
@@ -105,14 +137,15 @@ public class PlayerController : MonoBehaviour
             Destroy(other.gameObject);
             CoinCounter.instance.IncreaseCoins(1);
         }
-        else if  (other.CompareTag("Spike")){
+        else if (other.CompareTag("Spike"))
+        {
 
             Debug.Log("Trigger Enter: " + other.tag);
-                    Debug.Log("Hit a spike!");
-                    ResetPlayerPosition();
-                    audioManager.PlaySFX(audioManager.death);
-                }
-            
+            Debug.Log("Hit a spike!");
+            ResetPlayerPosition();
+            audioManager.PlaySFX(audioManager.death);
+        }
+
 
         else if (other.CompareTag("Door"))
         {
@@ -129,42 +162,6 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        Debug.Log("Collision Enter: " + collision.collider.tag);
-        if (collision.gameObject.CompareTag("Floor") || collision.gameObject.CompareTag("Stift") || collision.gameObject.CompareTag("StandingTable"))
-        {
-            isGrounded = true;
-            jumpsRemaining = maxJumps;
-            animator.SetBool("isJumping", false);
-        }
-         if (collision.gameObject.CompareTag("Stift"))
-        {
-            transform.parent = collision.transform;
-        }
-     
-    }
-
-    private void OnCollisionStay2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Floor") || collision.gameObject.CompareTag("Stift") || collision.gameObject.CompareTag("StandingTable"))
-        {
-            isGrounded = true;
-        }
-    }
-
-    private void OnCollisionExit2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Floor") || collision.gameObject.CompareTag("StandingTable"))
-        {
-            isGrounded = false;
-        }
-           if (collision.gameObject.CompareTag("Stift"))
-    {
-        // Loslösen von der Plattform
-        transform.parent = null;
-    }
-    }
 
     private void ResetPlayerPosition()
     {

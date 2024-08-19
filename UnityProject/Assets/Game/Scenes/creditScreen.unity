@@ -297,8 +297,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   musicSource: {fileID: 923331954}
   SFXSource: {fileID: 1812751772}
-  backgroundMap: {fileID: 8300000, guid: 52703d612f553794f90ce7062dd98fdc, type: 3}
-  backgroundLevel: {fileID: 8300000, guid: 39ffcbad5c9969740955d12e349de8cd, type: 3}
+  mapBackground: {fileID: 0}
+  levelBackground: {fileID: 0}
+  examBackground: {fileID: 0}
   death: {fileID: 0}
   coins: {fileID: 0}
   energie: {fileID: 0}
@@ -785,11 +786,12 @@ MonoBehaviour:
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
-    m_VerticalOverflow: 0
+    m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: "Used Assets\n \nSounds: \n\nFont: Free Pixel Font - Thaleah (by Tiny Worlds
-    from Unity Asset Store)\n\nitems:\nloading screen animation (by Hajiyev Elnur
-    from Unity asset Store)"
+  m_Text: "Used Assets\n \nSounds: \n\nMusic: Music Pack From The 90's (volume 1)
+    FREE SAMPLES by Bertrand Gu\xE9gan\r\nSFX:   Universal UI SFX by Pedro Hertz
+    SFX\n\nFont: Free Pixel Font - Thaleah (by Tiny Worlds from Unity Asset Store)\n\nitems:\nloading
+    screen animation (by Hajiyev Elnur from Unity asset Store)"
 --- !u!222 &1675220142
 CanvasRenderer:
   m_ObjectHideFlags: 0
