@@ -2435,7 +2435,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1701976763}
-  - component: {fileID: 1701976762}
   - component: {fileID: 1701976761}
   m_Layer: 0
   m_Name: mapManager
@@ -2457,18 +2456,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   exitButton: {fileID: 453544378}
---- !u!114 &1701976762
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1701976760}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8dd9b9a7c3621d342a9fd50b747a8b43, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &1701976763
 Transform:
   m_ObjectHideFlags: 0
