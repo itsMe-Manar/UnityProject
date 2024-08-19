@@ -48,7 +48,7 @@ public class MovingPlatform : MonoBehaviour
         transform.position = position;
     }
 
-    private void MoveHorizontal()
+   private void MoveHorizontal()
     {
         Vector3 position = transform.position;
         if (movingUpOrRight)
@@ -57,13 +57,12 @@ public class MovingPlatform : MonoBehaviour
             if (position.x >= startPosition.x + moveDistance)
             {
                 movingUpOrRight = false;
-                movingUpOrRight = false;
             }
         }
         else
         {
             position.x -= moveSpeed * Time.deltaTime;
-            if (position.x <= startPosition.x - moveDistance)
+            if (position.x <= startPosition.x)
             {
                 movingUpOrRight = true;
             }
