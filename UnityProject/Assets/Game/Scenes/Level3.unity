@@ -886,6 +886,56 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.8, y: 0.5}
   m_EdgeRadius: 0
+--- !u!1 &139390003 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5048678965765773680, guid: 93fda785aa71d594dba16acd54ec0c8b, type: 3}
+  m_PrefabInstance: {fileID: 1435739868}
+  m_PrefabAsset: {fileID: 0}
+--- !u!61 &139390006
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 139390003}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 1.4434974, y: -0.23567384}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.8, y: 0.8}
+    newSize: {x: 0.16, y: 0.16}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 3.686995, y: 0.32865226}
+  m_EdgeRadius: 0
 --- !u!1 &169517498
 GameObject:
   m_ObjectHideFlags: 0
@@ -1756,7 +1806,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.3}
+  m_Offset: {x: 0.48607332, y: -0.25581113}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -1767,7 +1817,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.8, y: 0.5}
+  m_Size: {x: 1.7721466, y: 0.41162223}
   m_EdgeRadius: 0
 --- !u!1 &238146776
 GameObject:
@@ -5690,7 +5740,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 1.8
   moveDistance: 3
-  moveDirection: ho
+  moveDirection: horizontal
   moveOnlyRight: 1
 --- !u!1 &824848609
 GameObject:
@@ -25522,6 +25572,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 6722952493797087745, guid: 93fda785aa71d594dba16acd54ec0c8b, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1339339835}
+    - targetCorrespondingSourceObject: {fileID: 5048678965765773680, guid: 93fda785aa71d594dba16acd54ec0c8b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 139390006}
   m_SourcePrefab: {fileID: 100100000, guid: 93fda785aa71d594dba16acd54ec0c8b, type: 3}
 --- !u!1 &1437201231
 GameObject:
@@ -25903,6 +25956,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 795254105a0f6d24d8340d656cb5de22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  levelLocks: []
 --- !u!4 &1527957642
 Transform:
   m_ObjectHideFlags: 0
