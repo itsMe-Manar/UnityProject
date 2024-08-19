@@ -576,7 +576,7 @@ MonoBehaviour:
   - {fileID: 1458473461}
   congratsPopup: {fileID: 562973639}
   tryAgainPopup: {fileID: 1686496724}
-  correctAnswerIndex: 2
+  correctAnswerIndex: 1
   examDuration: 30
   timerText: {fileID: 377966917}
   levelSceneName: Level3
@@ -2359,6 +2359,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: speechbubble
       objectReference: {fileID: 0}
+    - target: {fileID: 3626916397498700004, guid: 83afec38c8521134397d011eb87ae26c, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7878350319992209165, guid: 83afec38c8521134397d011eb87ae26c, type: 3}
       propertyPath: m_LocalScale.x
       value: 10.156913
@@ -2518,6 +2522,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 795254105a0f6d24d8340d656cb5de22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  levelLocks: []
 --- !u!1 &1643534154
 GameObject:
   m_ObjectHideFlags: 0
@@ -2951,7 +2956,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: how many doors did you count through the level?
+  m_Text: how many white doors did you count through the level?
 --- !u!222 &1908313231
 CanvasRenderer:
   m_ObjectHideFlags: 0
