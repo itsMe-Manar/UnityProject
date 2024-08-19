@@ -39,4 +39,13 @@ public class LevelManager : MonoBehaviour
     {
         return PlayerPrefs.GetInt("Level_" + levelIndex, 0) == 1;
     }
+
+    public bool IsLevelUnlocked(int levelIndex)
+    {
+        if (levelIndex == 1)
+        {
+            return true; // First level is always unlocked
+        }
+        return IsLevelCompleted(levelIndex - 1);
+    }
 }

@@ -74,13 +74,23 @@ public class AudioManager : MonoBehaviour
 
     public void PlaySFX(AudioClip clip)
     {
-        SFXSource.PlayOneShot(clip);
+        if (clip != null)
+        {
+            Debug.Log("Playing SFX: " + clip.name);
+            SFXSource.PlayOneShot(clip);
+        }
+        else
+        {
+            Debug.LogWarning("Attempted to play a null SFX clip!");
+        }
     }
+
 
     public void PlayHoverSound()
     {
         if (hoverSound != null)
         {
+            
             SFXSource.PlayOneShot(hoverSound);
         }
     }

@@ -29,7 +29,7 @@ public class CreditsManager : MonoBehaviour
         void OnPlayButtonClicked()
         {
             // Load the map scene
-            SceneManager.LoadScene("Menu");
+            SplashScreenManager.LoadSceneWithSplash("Menu");
         }
     }
 }

@@ -1,3 +1,5 @@
+
+
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -94,7 +96,7 @@ public class ExamManager : MonoBehaviour
             {
                 audioManager.PlaySFX(audioManager.popUpSoundHappy);
                 congratsPopup.SetActive(true);
-                LevelManager.Instance.MarkLevelAsCompleted(levelIndex);
+                LevelManager.Instance.MarkLevelAsCompleted(levelIndex); // Mark level as completed and unlock the next one
             }
             else
             {

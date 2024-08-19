@@ -1283,10 +1283,10 @@ MonoBehaviour:
   SFXSource: {fileID: 1397130152}
   mapBackground: {fileID: 8300000, guid: 52703d612f553794f90ce7062dd98fdc, type: 3}
   levelBackground: {fileID: 8300000, guid: 3e860f85d18a56245842c2bc55d48f84, type: 3}
-  examBackground: {fileID: 0}
-  death: {fileID: 0}
-  coins: {fileID: 0}
-  energie: {fileID: 0}
+  examBackground: {fileID: 8300000, guid: ca02ac9ef17629e419d3eb2e7b372246, type: 3}
+  death: {fileID: 8300000, guid: 79ad2c223d7d5cd4d92bc6e9d303f2e2, type: 3}
+  coins: {fileID: 8300000, guid: 8b30e18252be3ab419c342af95a34b5b, type: 3}
+  energie: {fileID: 8300000, guid: bb2d04d0748ba1643af84756e37682cc, type: 3}
   hoverSound: {fileID: 8300000, guid: 549724badcc4f7e4e8fcc714578e08b5, type: 3}
   clickSound: {fileID: 8300000, guid: 3d82bd142df14ae4c9ca6f10279b6623, type: 3}
   popUpSoundHappy: {fileID: 0}
@@ -2513,6 +2513,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 795254105a0f6d24d8340d656cb5de22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  levelLocks:
+  - {fileID: 1105502848}
+  - {fileID: 193416495}
+  - {fileID: 657235098}
+  - {fileID: 1676732862}
+  - {fileID: 1645549448}
+  - {fileID: 840155778}
 --- !u!4 &1751701585
 Transform:
   m_ObjectHideFlags: 0

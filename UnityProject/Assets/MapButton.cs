@@ -28,7 +28,16 @@ public class MapButton : MonoBehaviour
     }
     void OnMouseDown()
     {
-        // Load the level scene when the button is clicked
-        SceneManager.LoadScene(levelSceneName);
+        // Check if the level is unlocked before loading it
+        if (LevelManager.Instance.IsLevelUnlocked(levelIndex))
+        {
+            SplashScreenManager.LoadSceneWithSplash(levelSceneName);
+        }
+        else
+        {
+            Debug.Log("Level " + levelIndex + " is locked and cannot be accessed.");
+            // Optionally, you can show a message to the player indicating the level is locked
+        }
     }
+
 }
