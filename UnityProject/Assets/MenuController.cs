@@ -39,23 +39,23 @@ public class MenuController : MonoBehaviour
     void OnPlayButtonClicked()
     {
         // Load the map scene
-        SceneManager.LoadScene("Map");
+        SplashScreenManager.LoadSceneWithSplash("Map");
     }
     void OnNewButtonClicked()
     {
         // Reset the game state
         ResetGame();
         // Load the map scene
-        SceneManager.LoadScene("newGameMenu");
+        SplashScreenManager.LoadSceneWithSplash("newGameMenu");
     }
 
     void OnSettingsButtonClicked()
     {
-        SceneManager.LoadScene("mapMenuSettings");
+        SplashScreenManager.LoadSceneWithSplash("mapMenuSettings");
     }
     void OnCreditsButtonClicked()
     {
-        SceneManager.LoadScene("creditScreen");
+        SplashScreenManager.LoadSceneWithSplash("creditScreen");
     }
 
     void ResetGame()
