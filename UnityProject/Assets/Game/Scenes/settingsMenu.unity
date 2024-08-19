@@ -239,6 +239,7 @@ MonoBehaviour:
   playButton: {fileID: 0}
   settingsButton: {fileID: 0}
   newButton: {fileID: 0}
+  creditsButton: {fileID: 0}
 --- !u!4 &230355940
 Transform:
   m_ObjectHideFlags: 0
@@ -557,7 +558,7 @@ Transform:
   m_GameObject: {fileID: 1371548797}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.12, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -594,11 +595,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   musicSource: {fileID: 1371548798}
   SFXSource: {fileID: 1562012793}
-  background: {fileID: 8300000, guid: 52703d612f553794f90ce7062dd98fdc, type: 3}
+  mapBackground: {fileID: 0}
+  levelBackground: {fileID: 0}
+  examBackground: {fileID: 0}
   death: {fileID: 0}
   coins: {fileID: 0}
   energie: {fileID: 0}
   hoverSound: {fileID: 8300000, guid: 549724badcc4f7e4e8fcc714578e08b5, type: 3}
+  clickSound: {fileID: 0}
   popUpSoundHappy: {fileID: 0}
   popUpSoundsad: {fileID: 0}
 --- !u!4 &1529658952
@@ -1205,7 +1209,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7719908765476642201, guid: d9d4129745bf63b499a1e79536b0e19d, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 44.249
+      value: 86.6
       objectReference: {fileID: 0}
     - target: {fileID: 7719908765476642201, guid: d9d4129745bf63b499a1e79536b0e19d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
