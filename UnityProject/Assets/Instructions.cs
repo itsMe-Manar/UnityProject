@@ -1,9 +1,9 @@
 using UnityEngine;
 
-public class CreditsManager : MonoBehaviour
+public class Instructions : MonoBehaviour
 {
     public GameObject exitButton;
-    public GameObject instructionButton;  // Reference to the instruction button
+   // Reference to the instruction button
 
     void Update()
     {
@@ -18,23 +18,16 @@ public class CreditsManager : MonoBehaviour
                 {
                     OnPlayButtonClicked();
                 }
-                else if (hit.collider.gameObject == instructionButton)
-                {
-                    OnInstructionButtonClicked();
-                }
+               
             }
         }
 
         void OnPlayButtonClicked()
         {
             // Load the map scene
-            SplashScreenManager.LoadSceneWithSplash("Menu");
+            SplashScreenManager.LoadSceneWithSplash("Map");
         }
 
-        void OnInstructionButtonClicked()
-        {
-            // Load the instruction scene
-            SplashScreenManager.LoadSceneWithSplash("instructions");
-        }
+      
     }
 }

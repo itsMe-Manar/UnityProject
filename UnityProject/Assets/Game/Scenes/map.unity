@@ -873,6 +873,7 @@ GameObject:
   m_Component:
   - component: {fileID: 325422610}
   - component: {fileID: 325422609}
+  - component: {fileID: 325422611}
   m_Layer: 0
   m_Name: Info
   m_TagString: Untagged
@@ -947,6 +948,51 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &325422611
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 325422608}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.081645906, y: -0.016329288}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 5.12, y: 5.12}
+    newSize: {x: 5.12, y: 5.12}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1.6908239, y: 1.9520936}
+  m_EdgeRadius: 0
 --- !u!1 &453544378
 GameObject:
   m_ObjectHideFlags: 0
@@ -1065,7 +1111,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.0035066605, y: 0.09468031}
+  m_Offset: {x: 0.13463151, y: 0.38971138}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -1076,7 +1122,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.9919186, y: 0.7575669}
+  m_Size: {x: 4.7455444, y: 3.1833825}
   m_EdgeRadius: 0
 --- !u!114 &453544382
 MonoBehaviour:
@@ -2540,6 +2586,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   exitButton: {fileID: 453544378}
+  instructionButton: {fileID: 325422608}
 --- !u!4 &1701976763
 Transform:
   m_ObjectHideFlags: 0
@@ -3042,6 +3089,7 @@ SceneRoots:
   - {fileID: 1751701585}
   - {fileID: 1381160395}
   - {fileID: 453544380}
+  - {fileID: 325422610}
   - {fileID: 96315702}
   - {fileID: 6248099}
   - {fileID: 1701976763}
@@ -3053,4 +3101,3 @@ SceneRoots:
   - {fileID: 1676732864}
   - {fileID: 1645549450}
   - {fileID: 840155780}
-  - {fileID: 325422610}
